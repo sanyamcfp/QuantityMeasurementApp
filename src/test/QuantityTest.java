@@ -20,4 +20,22 @@ public class QuantityTest {
 
         assertFalse(q1.equals(q2));
     }
+
+    @Test
+void testFeetToInchEquality() {
+
+    Feet oneFoot = new Feet(1.0);
+    Inch twelveInch = new Inch(12.0);
+
+    assertTrue(oneFoot.equals(twelveInch));
+}
+
+@Test
+void testFeetToInchNotEqual() {
+
+    Feet oneFoot = new Feet(1.0);
+    Inch thirteenInch = new Inch(13.0);
+
+    assertFalse(oneFoot.equals(thirteenInch));
+}
 }
