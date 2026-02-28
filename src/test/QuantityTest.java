@@ -1,41 +1,31 @@
-import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.Test;
+public class Quantity {
 
-public class QuantityTest {
+    private final double value;
+    private final Length unit;
 
-    @Test
-    void testEquality() {
-
-        Quantity q1 = new Quantity(1.0);
-        Quantity q2 = new Quantity(1.0);
-
-        assertTrue(q1.equals(q2));
+    public Quantity(double value, Length unit) {
+        this.value = value;
+        this.unit = unit;
     }
 
-    @Test
-    void testNotEqual() {
-
-        Quantity q1 = new Quantity(1.0);
-        Quantity q2 = new Quantity(2.0);
-
-        assertFalse(q1.equals(q2));
+    private double toBaseUnit() {
+        return value * unit.getConversionFactor();
     }
 
-    @Test
-void testFeetToInchEquality() {
+    @Override
+    public boolean equals(Object obj) {
 
-    Feet oneFoot = new Feet(1.0);
-    Inch twelveInch = new Inch(12.0);
+        if (this == obj)
+            return true;
 
-    assertTrue(oneFoot.equals(twelveInch));
-}
+        if (obj == null)
+            return false;
 
-@Test
-void testFeetToInchNotEqual() {
+        if (!(obj instanceof Quantity))
+            return false;
 
-    Feet oneFoot = new Feet(1.0);
-    Inch thirteenInch = new Inch(13.0);
+        Quantity other = (Quantity) obj;
 
-    assertFalse(oneFoot.equals(thirteenInch));
-}
+        return Double.compare(this.toBaseUnit(), other.toBaseUnit()) == 0;
+    }
 }
