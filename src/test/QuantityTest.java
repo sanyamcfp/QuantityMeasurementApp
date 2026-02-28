@@ -3,6 +3,8 @@ import org.junit.jupiter.api.Test;
 
 public class QuantityTest {
 
+    // UC3 Tests
+
     @Test
     void testFeetToFeetEquality() {
 
@@ -30,30 +32,64 @@ public class QuantityTest {
         assertFalse(q1.equals(q2));
     }
 
+    // UC4 Tests
+
     @Test
-void testYardToFeetEquality() {
+    void testYardToFeetEquality() {
 
-    Quantity q1 = new Quantity(1, Length.YARD);
-    Quantity q2 = new Quantity(3, Length.FEET);
+        Quantity q1 = new Quantity(1, Length.YARD);
+        Quantity q2 = new Quantity(3, Length.FEET);
 
-    assertTrue(q1.equals(q2));
-}
+        assertTrue(q1.equals(q2));
+    }
 
-@Test
-void testYardToInchEquality() {
+    @Test
+    void testYardToInchEquality() {
 
-    Quantity q1 = new Quantity(1, Length.YARD);
-    Quantity q2 = new Quantity(36, Length.INCH);
+        Quantity q1 = new Quantity(1, Length.YARD);
+        Quantity q2 = new Quantity(36, Length.INCH);
 
-    assertTrue(q1.equals(q2));
-}
+        assertTrue(q1.equals(q2));
+    }
 
-@Test
-void testCmToInchEquality() {
+    @Test
+    void testCmToInchEquality() {
 
-    Quantity q1 = new Quantity(2.54, Length.CENTIMETER);
-    Quantity q2 = new Quantity(1, Length.INCH);
+        Quantity q1 = new Quantity(2.54, Length.CENTIMETER);
+        Quantity q2 = new Quantity(1, Length.INCH);
 
-    assertTrue(q1.equals(q2));
-}
+        assertTrue(q1.equals(q2));
+    }
+
+    // UC5 Tests (Conversion)
+
+    @Test
+    void testFeetToInchConversion() {
+
+        Quantity q = new Quantity(1, Length.FEET);
+
+        Quantity result = q.convertTo(Length.INCH);
+
+        assertEquals(new Quantity(12, Length.INCH), result);
+    }
+
+    @Test
+    void testYardToFeetConversion() {
+
+        Quantity q = new Quantity(1, Length.YARD);
+
+        Quantity result = q.convertTo(Length.FEET);
+
+        assertEquals(new Quantity(3, Length.FEET), result);
+    }
+
+    @Test
+    void testInchToCmConversion() {
+
+        Quantity q = new Quantity(1, Length.INCH);
+
+        Quantity result = q.convertTo(Length.CENTIMETER);
+
+        assertEquals(new Quantity(2.54, Length.CENTIMETER), result);
+    }
 }

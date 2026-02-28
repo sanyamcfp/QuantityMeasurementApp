@@ -12,6 +12,14 @@ public class Quantity {
         return value * unit.getConversionFactor();
     }
 
+    public Quantity convertTo(Length targetUnit) {
+
+        double baseValue = this.toBaseUnit();
+        double convertedValue = baseValue / targetUnit.getConversionFactor();
+
+        return new Quantity(convertedValue, targetUnit);
+    }
+
     @Override
     public boolean equals(Object obj) {
 
