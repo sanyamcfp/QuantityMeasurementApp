@@ -1,15 +1,17 @@
 public enum Length {
 
-    FEET(12),
-    INCH(1);
+    INCH(2.54),
+    FEET(30.48),
+    YARD(91.44),
+    CENTIMETER(1);
 
-    private final int conversionFactor;
+    private final double conversionFactor;
 
-    Length(int conversionFactor) {
+    Length(double conversionFactor) {
         this.conversionFactor = conversionFactor;
     }
 
-    public int getConversionFactor() {
+    public double getConversionFactor() {
         return conversionFactor;
     }
 }

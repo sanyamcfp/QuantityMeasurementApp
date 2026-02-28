@@ -1,31 +1,59 @@
-public class Quantity {
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
-    private final double value;
-    private final Length unit;
+public class QuantityTest {
 
-    public Quantity(double value, Length unit) {
-        this.value = value;
-        this.unit = unit;
+    @Test
+    void testFeetToFeetEquality() {
+
+        Quantity q1 = new Quantity(1.0, Length.FEET);
+        Quantity q2 = new Quantity(1.0, Length.FEET);
+
+        assertTrue(q1.equals(q2));
     }
 
-    private double toBaseUnit() {
-        return value * unit.getConversionFactor();
+    @Test
+    void testFeetToInchEquality() {
+
+        Quantity q1 = new Quantity(1.0, Length.FEET);
+        Quantity q2 = new Quantity(12.0, Length.INCH);
+
+        assertTrue(q1.equals(q2));
     }
 
-    @Override
-    public boolean equals(Object obj) {
+    @Test
+    void testFeetToInchNotEqual() {
 
-        if (this == obj)
-            return true;
+        Quantity q1 = new Quantity(1.0, Length.FEET);
+        Quantity q2 = new Quantity(13.0, Length.INCH);
 
-        if (obj == null)
-            return false;
-
-        if (!(obj instanceof Quantity))
-            return false;
-
-        Quantity other = (Quantity) obj;
-
-        return Double.compare(this.toBaseUnit(), other.toBaseUnit()) == 0;
+        assertFalse(q1.equals(q2));
     }
+
+    @Test
+void testYardToFeetEquality() {
+
+    Quantity q1 = new Quantity(1, Length.YARD);
+    Quantity q2 = new Quantity(3, Length.FEET);
+
+    assertTrue(q1.equals(q2));
+}
+
+@Test
+void testYardToInchEquality() {
+
+    Quantity q1 = new Quantity(1, Length.YARD);
+    Quantity q2 = new Quantity(36, Length.INCH);
+
+    assertTrue(q1.equals(q2));
+}
+
+@Test
+void testCmToInchEquality() {
+
+    Quantity q1 = new Quantity(2.54, Length.CENTIMETER);
+    Quantity q2 = new Quantity(1, Length.INCH);
+
+    assertTrue(q1.equals(q2));
+}
 }
