@@ -61,7 +61,7 @@ public class QuantityTest {
         assertTrue(q1.equals(q2));
     }
 
-    // UC5 Tests (Conversion)
+    // UC5 Conversion Tests
 
     @Test
     void testFeetToInchConversion() {
@@ -91,5 +91,40 @@ public class QuantityTest {
         Quantity result = q.convertTo(Length.CENTIMETER);
 
         assertEquals(new Quantity(2.54, Length.CENTIMETER), result);
+    }
+
+    // UC6 Addition Tests
+
+    @Test
+    void testFeetAndInchAddition() {
+
+        Quantity q1 = new Quantity(5, Length.FEET);
+        Quantity q2 = new Quantity(24, Length.INCH);
+
+        Quantity result = q1.add(q2, Length.FEET);
+
+        assertEquals(new Quantity(7, Length.FEET), result);
+    }
+
+    @Test
+    void testFeetAddition() {
+
+        Quantity q1 = new Quantity(2, Length.FEET);
+        Quantity q2 = new Quantity(3, Length.FEET);
+
+        Quantity result = q1.add(q2, Length.FEET);
+
+        assertEquals(new Quantity(5, Length.FEET), result);
+    }
+
+    @Test
+    void testInchAddition() {
+
+        Quantity q1 = new Quantity(10, Length.INCH);
+        Quantity q2 = new Quantity(2, Length.INCH);
+
+        Quantity result = q1.add(q2, Length.INCH);
+
+        assertEquals(new Quantity(12, Length.INCH), result);
     }
 }
