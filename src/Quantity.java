@@ -22,7 +22,10 @@ public class Quantity {
 
     public Quantity add(Quantity other, Length targetUnit) {
 
-        double sum = this.toBaseUnit() + other.toBaseUnit();
+        double baseValue1 = this.toBaseUnit();
+        double baseValue2 = other.toBaseUnit();
+
+        double sum = baseValue1 + baseValue2;
 
         double result = sum / targetUnit.getConversionFactor();
 

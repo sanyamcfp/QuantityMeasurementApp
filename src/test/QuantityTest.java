@@ -127,4 +127,34 @@ public class QuantityTest {
 
         assertEquals(new Quantity(12, Length.INCH), result);
     }
+    @Test
+void testAddFeetAndInchResultInInch() {
+
+    Quantity q1 = new Quantity(1, Length.FEET);
+    Quantity q2 = new Quantity(2, Length.INCH);
+
+    Quantity result = q1.add(q2, Length.INCH);
+
+    assertEquals(new Quantity(14, Length.INCH), result);
+}
+@Test
+void testAddFeetAndInchResultInFeet() {
+
+    Quantity q1 = new Quantity(1, Length.FEET);
+    Quantity q2 = new Quantity(2, Length.INCH);
+
+    Quantity result = q1.add(q2, Length.FEET);
+
+    assertEquals(new Quantity(14.0/12.0, Length.FEET), result);
+}
+@Test
+void testAddYardAndFeetResultInFeet() {
+
+    Quantity q1 = new Quantity(1, Length.YARD);
+    Quantity q2 = new Quantity(2, Length.FEET);
+
+    Quantity result = q1.add(q2, Length.FEET);
+
+    assertEquals(new Quantity(5, Length.FEET), result);
+}
 }
