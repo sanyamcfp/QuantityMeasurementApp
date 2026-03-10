@@ -9,25 +9,21 @@ public class Quantity {
     }
 
     private double toBaseUnit() {
-        return value * unit.getConversionFactor();
+        return unit.toBase(value);
     }
 
     public Quantity convertTo(Length targetUnit) {
 
         double baseValue = this.toBaseUnit();
-        double convertedValue = baseValue / targetUnit.getConversionFactor();
+        double convertedValue = targetUnit.fromBase(baseValue);
 
         return new Quantity(convertedValue, targetUnit);
     }
 
     public Quantity add(Quantity other, Length targetUnit) {
 
-        double baseValue1 = this.toBaseUnit();
-        double baseValue2 = other.toBaseUnit();
-
-        double sum = baseValue1 + baseValue2;
-
-        double result = sum / targetUnit.getConversionFactor();
+        double sum = this.toBaseUnit() + other.toBaseUnit();
+        double result = targetUnit.fromBase(sum);
 
         return new Quantity(result, targetUnit);
     }
@@ -37,9 +33,6 @@ public class Quantity {
 
         if (this == obj)
             return true;
-
-        if (obj == null)
-            return false;
 
         if (!(obj instanceof Quantity))
             return false;

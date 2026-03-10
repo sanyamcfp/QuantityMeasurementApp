@@ -127,34 +127,39 @@ public class QuantityTest {
 
         assertEquals(new Quantity(12, Length.INCH), result);
     }
+
+    // UC7 Target Unit Addition
+
     @Test
-void testAddFeetAndInchResultInInch() {
+    void testAddFeetAndInchResultInInch() {
 
-    Quantity q1 = new Quantity(1, Length.FEET);
-    Quantity q2 = new Quantity(2, Length.INCH);
+        Quantity q1 = new Quantity(1, Length.FEET);
+        Quantity q2 = new Quantity(2, Length.INCH);
 
-    Quantity result = q1.add(q2, Length.INCH);
+        Quantity result = q1.add(q2, Length.INCH);
 
-    assertEquals(new Quantity(14, Length.INCH), result);
-}
-@Test
-void testAddFeetAndInchResultInFeet() {
+        assertEquals(new Quantity(14, Length.INCH), result);
+    }
 
-    Quantity q1 = new Quantity(1, Length.FEET);
-    Quantity q2 = new Quantity(2, Length.INCH);
+    @Test
+    void testAddFeetAndInchResultInFeet() {
 
-    Quantity result = q1.add(q2, Length.FEET);
+        Quantity q1 = new Quantity(1, Length.FEET);
+        Quantity q2 = new Quantity(2, Length.INCH);
 
-    assertEquals(new Quantity(14.0/12.0, Length.FEET), result);
-}
-@Test
-void testAddYardAndFeetResultInFeet() {
+        Quantity result = q1.add(q2, Length.FEET);
 
-    Quantity q1 = new Quantity(1, Length.YARD);
-    Quantity q2 = new Quantity(2, Length.FEET);
+        assertEquals(new Quantity(14.0/12.0, Length.FEET), result);
+    }
 
-    Quantity result = q1.add(q2, Length.FEET);
+    @Test
+    void testAddYardAndFeetResultInFeet() {
 
-    assertEquals(new Quantity(5, Length.FEET), result);
-}
+        Quantity q1 = new Quantity(1, Length.YARD);
+        Quantity q2 = new Quantity(2, Length.FEET);
+
+        Quantity result = q1.add(q2, Length.FEET);
+
+        assertEquals(new Quantity(5, Length.FEET), result);
+    }
 }
