@@ -10,10 +10,6 @@ public enum WeightUnit {
         this.conversionFactor = conversionFactor;
     }
 
-    public double getConversionFactor() {
-        return conversionFactor;
-    }
-
     public double convertToBaseUnit(double value) {
         return value * conversionFactor;
     }

@@ -162,4 +162,12 @@ public class QuantityTest {
 
         assertEquals(new Quantity(5, Length.FEET), result);
     }
+    @Test
+void testKgToGramEquality() {
+
+    QuantityWeight q1 = new QuantityWeight(1, WeightUnit.KILOGRAM);
+    QuantityWeight q2 = new QuantityWeight(1000, WeightUnit.GRAM);
+
+    assertTrue(q1.equals(q2));
+}
 }

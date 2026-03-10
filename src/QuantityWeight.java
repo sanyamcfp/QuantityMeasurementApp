@@ -5,7 +5,7 @@ public class QuantityWeight {
 
     public QuantityWeight(double value, WeightUnit unit) {
 
-        if(unit == null)
+        if (unit == null)
             throw new IllegalArgumentException("Unit cannot be null");
 
         this.value = value;
@@ -19,18 +19,15 @@ public class QuantityWeight {
     @Override
     public boolean equals(Object obj) {
 
-        if(this == obj)
+        if (this == obj)
             return true;
 
-        if(obj == null || getClass() != obj.getClass())
+        if (obj == null || getClass() != obj.getClass())
             return false;
 
         QuantityWeight other = (QuantityWeight) obj;
 
-        double base1 = this.toBaseUnit();
-        double base2 = other.toBaseUnit();
-
-        return Math.abs(base1 - base2) < 0.0001;
+        return Math.abs(this.toBaseUnit() - other.toBaseUnit()) < 0.0001;
     }
 
     public QuantityWeight convertTo(WeightUnit targetUnit) {
@@ -44,7 +41,6 @@ public class QuantityWeight {
     public QuantityWeight add(QuantityWeight other) {
 
         double sum = this.toBaseUnit() + other.toBaseUnit();
-
         double result = this.unit.convertFromBaseUnit(sum);
 
         return new QuantityWeight(result, this.unit);
@@ -53,14 +49,8 @@ public class QuantityWeight {
     public QuantityWeight add(QuantityWeight other, WeightUnit targetUnit) {
 
         double sum = this.toBaseUnit() + other.toBaseUnit();
-
         double result = targetUnit.convertFromBaseUnit(sum);
 
         return new QuantityWeight(result, targetUnit);
-    }
-
-    @Override
-    public String toString() {
-        return value + " " + unit;
     }
 }
