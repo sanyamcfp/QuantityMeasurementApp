@@ -170,4 +170,59 @@ void testKgToGramEquality() {
 
     assertTrue(q1.equals(q2));
 }
+@Test
+void testLitreToMillilitreEquality() {
+
+    Quantity<VolumeUnit> v1 =
+            new Quantity<>(1, VolumeUnit.LITRE);
+
+    Quantity<VolumeUnit> v2 =
+            new Quantity<>(1000, VolumeUnit.MILLILITRE);
+
+    assertTrue(v1.equals(v2));
+}
+
+@Test
+void testGallonToLitreEquality() {
+
+    Quantity<VolumeUnit> v1 =
+            new Quantity<>(1, VolumeUnit.GALLON);
+
+    Quantity<VolumeUnit> v2 =
+            new Quantity<>(3.78541, VolumeUnit.LITRE);
+
+    assertTrue(v1.equals(v2));
+}
+
+@Test
+void testVolumeConversion() {
+
+    Quantity<VolumeUnit> v =
+            new Quantity<>(1, VolumeUnit.LITRE);
+
+    Quantity<VolumeUnit> result =
+            v.convertTo(VolumeUnit.MILLILITRE);
+
+    assertEquals(
+            new Quantity<>(1000, VolumeUnit.MILLILITRE),
+            result
+    );
+}
+
+@Test
+void testVolumeAddition() {
+
+    Quantity<VolumeUnit> v1 =
+            new Quantity<>(1, VolumeUnit.LITRE);
+
+    Quantity<VolumeUnit> v2 =
+            new Quantity<>(1000, VolumeUnit.MILLILITRE);
+
+    Quantity<VolumeUnit> result = v1.add(v2, VolumeUnit.LITRE);
+
+    assertEquals(
+            new Quantity<>(2, VolumeUnit.LITRE),
+            result
+    );
+}
 }
