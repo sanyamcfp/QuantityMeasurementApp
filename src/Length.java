@@ -1,21 +1,23 @@
-public class Length {
+public enum Length implements IMeasurable {
 
-    public static final Length INCH = new Length(2.54);
-    public static final Length FEET = new Length(30.48);
-    public static final Length YARD = new Length(91.44);
-    public static final Length CENTIMETER = new Length(1);
+    FEET(1.0),
+    INCH(1.0 / 12.0),
+    YARD(3.0),
+    CENTIMETER(1.0 / 30.48);
 
-    private final double conversionFactor;
+    private final double toBase;
 
-    private Length(double conversionFactor) {
-        this.conversionFactor = conversionFactor;
+    Length(double toBase) {
+        this.toBase = toBase;
     }
 
-    public double toBase(double value) {
-        return value * conversionFactor;
+    @Override
+    public double convertToBaseUnit(double value) {
+        return value * toBase;
     }
 
-    public double fromBase(double baseValue) {
-        return baseValue / conversionFactor;
+    @Override
+    public double convertFromBaseUnit(double baseValue) {
+        return baseValue / toBase;
     }
 }

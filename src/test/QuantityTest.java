@@ -171,58 +171,64 @@ void testKgToGramEquality() {
     assertTrue(q1.equals(q2));
 }
 @Test
-void testLitreToMillilitreEquality() {
+    void testSubtractionFeet() {
 
-    Quantity<VolumeUnit> v1 =
-            new Quantity<>(1, VolumeUnit.LITRE);
+        Quantity<Length> q1 =
+                new Quantity<>(10, Length.FEET);
 
-    Quantity<VolumeUnit> v2 =
-            new Quantity<>(1000, VolumeUnit.MILLILITRE);
+        Quantity<Length> q2 =
+                new Quantity<>(5, Length.FEET);
 
-    assertTrue(v1.equals(v2));
-}
+        Quantity<Length> result = q1.subtract(q2);
 
-@Test
-void testGallonToLitreEquality() {
+        assertEquals(
+                new Quantity<>(5, Length.FEET),
+                result
+        );
+    }
 
-    Quantity<VolumeUnit> v1 =
-            new Quantity<>(1, VolumeUnit.GALLON);
+    @Test
+    void testSubtractionFeetInch() {
 
-    Quantity<VolumeUnit> v2 =
-            new Quantity<>(3.78541, VolumeUnit.LITRE);
+        Quantity<Length> q1 =
+                new Quantity<>(10, Length.FEET);
 
-    assertTrue(v1.equals(v2));
-}
+        Quantity<Length> q2 =
+                new Quantity<>(6, Length.INCH);
 
-@Test
-void testVolumeConversion() {
+        Quantity<Length> result = q1.subtract(q2);
 
-    Quantity<VolumeUnit> v =
-            new Quantity<>(1, VolumeUnit.LITRE);
+        assertEquals(
+                new Quantity<>(9.5, Length.FEET),
+                result
+        );
+    }
 
-    Quantity<VolumeUnit> result =
-            v.convertTo(VolumeUnit.MILLILITRE);
+    @Test
+    void testDivisionFeet() {
 
-    assertEquals(
-            new Quantity<>(1000, VolumeUnit.MILLILITRE),
-            result
-    );
-}
+        Quantity<Length> q1 =
+                new Quantity<>(10, Length.FEET);
 
-@Test
-void testVolumeAddition() {
+        Quantity<Length> q2 =
+                new Quantity<>(2, Length.FEET);
 
-    Quantity<VolumeUnit> v1 =
-            new Quantity<>(1, VolumeUnit.LITRE);
+        double result = q1.divide(q2);
 
-    Quantity<VolumeUnit> v2 =
-            new Quantity<>(1000, VolumeUnit.MILLILITRE);
+        assertEquals(5.0, result);
+    }
 
-    Quantity<VolumeUnit> result = v1.add(v2, VolumeUnit.LITRE);
+    @Test
+    void testDivisionCrossUnit() {
 
-    assertEquals(
-            new Quantity<>(2, VolumeUnit.LITRE),
-            result
-    );
-}
+        Quantity<Length> q1 =
+                new Quantity<>(24, Length.INCH);
+
+        Quantity<Length> q2 =
+                new Quantity<>(2, Length.FEET);
+
+        double result = q1.divide(q2);
+
+        assertEquals(1.0, result);
+    }
 }
